@@ -1,0 +1,28 @@
+import math
+
+# Minimax function
+def minimax(tree, depth, index, isMax):
+    
+    # Base case: leaf node
+    if depth == 3:
+        return tree[index]
+
+    if isMax:
+        return max(
+            minimax(tree, depth + 1, index * 2, False),
+            minimax(tree, depth + 1, index * 2 + 1, False)
+        )
+    else:
+        return min(
+            minimax(tree, depth + 1, index * 2, True),
+            minimax(tree, depth + 1, index * 2 + 1, True)
+        )
+
+
+# Leaf nodes (adjusted from your tree)
+tree = [-4, -5, 2, 3, 4, -5, 6, 7]
+
+# Height = 3 (since 8 leaf nodes → 2^3)
+result = minimax(tree, 0, 0, True)
+
+print("Optimal Value:", result)
